@@ -1,0 +1,46 @@
+name: DevOps-Normal-Model2
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  ServiceNowDevOpsChange:
+    runs-on: ubuntu-latest
+    name: ServiceNow DevOps Change (Prod Deploy)
+
+    steps:
+      # -----------------------------------
+      # CHECKOUT
+      # -----------------------------------
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # -----------------------------------
+      # CREATE STANDARD CHANGE
+      # -----------------------------------
+      - name: Create ServiceNow Standard Change
+        id: sn_change
+        uses: ServiceNow/servicenow-devops-change@v6.1.0
+        with:
+          devops-integration-user-name:     ${{ secrets.SN_DEVOPS_USER }}
+          devops-integration-user-password: ${{ secrets.SN_DEVOPS_PASSWORD }}
+          instance-url: ${{ secrets.SN_INSTANCE_URL }}
+          tool-id: ${{ secrets.SN_ORCHESTRATION_TOOL_ID }}
+          context-github: ${{ toJSON(github) }}
+          job-name: "ServiceNow DevOps Change (Prod Deploy)"
+
+          change-request: >
+            {
+              "autoCloseChange": "true",
+              "attributes": {
+                "short_description": "Test 123",
+                "description": "Production change?\n\nQuality of plans: Implementation, Rollback, Test, Validation & communication\n\nService Disruption expected?\n\nTests successful\n\nTechnical Approvals to deploy in prod\n\nProduct owner approval\n\nSecurity Approval (assessment)\n\nChange successful before\n\nTime for Rollback? Longer time means more risk"
+              }
+            }
+
+          interval: "15"
+          timeout: "900"
