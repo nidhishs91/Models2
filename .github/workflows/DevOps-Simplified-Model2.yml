@@ -2,7 +2,7 @@ name: DevOps-Simplified-Model2
 
 on:
   push:
-    branches: [main]
+    branches: [devops-standard-change]
 
 permissions:
   contents: read
@@ -10,7 +10,7 @@ permissions:
 jobs:
   ServiceNowDevOpsChange:
     runs-on: ubuntu-latest
-    name: ServiceNow DevOps Change (Prod Deploy)
+    name: SN-DevOps-Simplified-Standard-Change
 
     steps:
       # -----------------------------------
@@ -31,7 +31,7 @@ jobs:
           instance-url: ${{ secrets.SN_INSTANCE_URL }}
           tool-id: ${{ secrets.SN_ORCHESTRATION_TOOL_ID }}
           context-github: ${{ toJSON(github) }}
-          job-name: "ServiceNow DevOps Change (Prod Deploy)"
+          job-name: "SN-DevOps-Simplified-Standard-Change"
 
           change-request: >
             {
