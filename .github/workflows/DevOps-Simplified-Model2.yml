@@ -2,7 +2,7 @@ name: DevOps-Simplified-Model2
 
 on:
   push:
-    branches: [nidhishs91-patch-2]
+    branches: [nidhishs91-patch-1]
 
 permissions:
   contents: read
