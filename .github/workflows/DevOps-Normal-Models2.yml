@@ -34,13 +34,18 @@ jobs:
           job-name: "SN-DevOps-Normal-Change"
 
           change-request: >
-            {
-              "autoCloseChange": "true",
-              "attributes": {
-                "short_description": "Test 123",
-                "description": "Production change?\n\nQuality of plans: Implementation, Rollback, Test, Validation & communication\n\nService Disruption expected?\n\nTests successful\n\nTechnical Approvals to deploy in prod\n\nProduct owner approval\n\nSecurity Approval (assessment)\n\nChange successful before\n\nTime for Rollback? Longer time means more risk"
-              }
-            }
+                          {
+                          "autoCloseChange": "true",
+                          "attributes": {
+                          "short_description": "Normal Change Test",
+                          "description": "Triggered from GitHub Actions",
+                          "implementation_plan": "Deploy code",
+                          "backout_plan": "Rollback deployment",
+                          "test_plan": "Run smoke tests",
+                          "start_date": "2026-03-28 06:00:00",
+                          "end_date": "2026-03-28 06:30:00"
+                          }
+                          }
 
           interval: "15"
           timeout: "900"
