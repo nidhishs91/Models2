@@ -2,7 +2,7 @@ name: DevOps-Normal-Model2
 
 on:
   push:
-    branches: [devops-normal-change]
+    branches: [nidhishs91-patch-1]
 
 permissions:
   contents: read
