@@ -2,7 +2,7 @@ name: DevOps-Normal-Model2
 
 on:
   push:
-    branches: [main]
+    branches: [devops-normal-change]
 
 permissions:
   contents: read
@@ -10,7 +10,7 @@ permissions:
 jobs:
   ServiceNowDevOpsChange:
     runs-on: ubuntu-latest
-    name: ServiceNow DevOps Change (Prod Deploy)
+    name: SN-DevOps-Normal-Change
 
     steps:
       # -----------------------------------
@@ -22,7 +22,7 @@ jobs:
       # -----------------------------------
       # CREATE STANDARD CHANGE
       # -----------------------------------
-      - name: Create ServiceNow Standard Change
+      - name: Create ServiceNow Normal Change
         id: sn_change
         uses: ServiceNow/servicenow-devops-change@v6.1.0
         with:
@@ -31,7 +31,7 @@ jobs:
           instance-url: ${{ secrets.SN_INSTANCE_URL }}
           tool-id: ${{ secrets.SN_ORCHESTRATION_TOOL_ID }}
           context-github: ${{ toJSON(github) }}
-          job-name: "ServiceNow DevOps Change (Prod Deploy)"
+          job-name: "SN-DevOps-Normal-Change"
 
           change-request: >
             {
